@@ -122,14 +122,37 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </div>
           </div>
 
-          {/* Architecture Highlights */}
+          {/* Architecture Highlights & Interactive Pipeline */}
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <Cpu className="w-4 h-4 text-neutral-700" />
               <h4 className="text-xs font-bold uppercase tracking-wider text-neutral-500">
-                Architectural Design
+                Architectural Design & Flow
               </h4>
             </div>
+
+            {project.architectureFlow && project.architectureFlow.length > 0 && (
+              <div className="p-4 rounded-xl bg-neutral-900 text-white space-y-2 mb-3">
+                <div className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider pb-1 border-b border-neutral-800">
+                  Full-Stack Execution Pipeline
+                </div>
+                <div className="space-y-2">
+                  {project.architectureFlow.map((node, nIdx) => (
+                    <div key={nIdx} className="flex items-start gap-2.5 text-xs">
+                      <span className="w-5 h-5 rounded-md bg-neutral-800 text-emerald-400 font-mono text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">
+                        0{nIdx + 1}
+                      </span>
+                      <div>
+                        <span className="font-semibold text-white mr-1.5">{node.layer}:</span>
+                        <span className="text-emerald-300 font-mono text-[11px] mr-1.5">[{node.technology}]</span>
+                        <span className="text-neutral-400 text-[11px]">{node.description}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <ul className="space-y-2 text-sm text-neutral-700">
               {project.architecture.map((arch, idx) => (
                 <li key={idx} className="flex items-start gap-2">

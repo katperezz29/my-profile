@@ -86,15 +86,6 @@ export default function Footer({ onOpenResumeModal }: FooterProps) {
                   {PROFILE_INFO.emails[0].address}
                 </a>
               </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-neutral-400" />
-                <a
-                  href={`mailto:${PROFILE_INFO.emails[1].address}`}
-                  className="hover:text-white font-mono transition-colors"
-                >
-                  {PROFILE_INFO.emails[1].address}
-                </a>
-              </div>
             </div>
 
             <div className="pt-2">

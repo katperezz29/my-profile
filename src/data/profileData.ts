@@ -10,8 +10,7 @@ export const PROFILE_INFO = {
   location: 'Taguig City, Philippines',
   timezone: 'Asia/Manila (UTC+8)',
   emails: [
-    { label: 'Primary', address: 'katrineperez29@gmail.com' },
-    { label: 'Corporate / Pollen', address: 'katrine@pollen.tech' }
+    { label: 'Direct Email', address: 'katrineperez29@gmail.com' }
   ],
   phone: '+63 926 208 0172',
   avatar: KATRINE_PHOTO,
@@ -53,6 +52,17 @@ export const PROJECTS: Project[] = [
       'Cordova native plugins for camera and geolocation',
       'Fast client-side list rendering'
     ],
+    architectureFlow: [
+      { layer: 'Client Mobile App', technology: 'Sencha ExtJS 6 + SCSS', description: 'Cross-platform reactive UI with customized mobile touch widgets' },
+      { layer: 'Native Bridge', technology: 'Apache Cordova Plugins', description: 'Native hardware bridge for device camera, secure storage, and GPS' },
+      { layer: 'App Packaging', technology: 'Android SDK + iOS Xcode', description: 'Certified signed builds deployed to enterprise distribution channels' },
+      { layer: 'Backend & Data', technology: 'MySQL & REST Services', description: 'Relational database handling claims, policy rules, and clinic directories' }
+    ],
+    impactMetrics: [
+      { label: 'Platform Build', value: '100% Ground-up' },
+      { label: 'Ecosystem', value: 'Android + iOS' },
+      { label: 'Core Users', value: 'Policyholders' }
+    ],
     badge: 'Mobile App'
   },
   {
@@ -85,6 +95,18 @@ export const PROJECTS: Project[] = [
       'Auth0 JWT authentication',
       'AWS infrastructure with GitHub Actions CI/CD'
     ],
+    architectureFlow: [
+      { layer: 'Frontend Dashboard', technology: 'Nuxt 3 + Vue 3 + Vuetify', description: 'SSR/CSR enterprise inventory portal with real-time analytics tables' },
+      { layer: 'Identity & Security', technology: 'Auth0 SSO + JWT Tokens', description: 'Role-based access control (Superadmin, Brand Buyer, Operations)' },
+      { layer: 'Business Logic API', technology: 'NestJS + TypeORM (Node.js)', description: 'Modular TypeScript microservices exposing performant REST endpoints' },
+      { layer: 'Workflow Engine', technology: 'Temporal.io Orchestration', description: 'Fault-tolerant distributed workflows managing batch inventory transitions' },
+      { layer: 'Alerts & Cloud', technology: 'Twilio SMS + AWS Cloud', description: 'Automated buyer dispatch alerts and scalable AWS container hosting' }
+    ],
+    impactMetrics: [
+      { label: 'Role', value: 'Scrum Master & Senior SWE' },
+      { label: 'Uptime Maintained', value: '99.9%' },
+      { label: 'Pipelines', value: 'Temporal + Twilio' }
+    ],
     badge: 'Enterprise SaaS'
   },
   {
@@ -114,6 +136,17 @@ export const PROJECTS: Project[] = [
       'Component-driven React layout',
       'REST APIs and cloud media caching on AWS',
       'Optimized client-side catalog navigation'
+    ],
+    architectureFlow: [
+      { layer: 'Buyer Frontend', technology: 'React.js + Tailwind CSS', description: 'Component-driven responsive buyer portal with instant filter and sorting' },
+      { layer: 'API Layer', technology: 'Node.js Express + REST', description: 'Optimized endpoints for SKU search, lot details, and deal negotiation' },
+      { layer: 'Auth & Validation', technology: 'JWT + Postman Testing', description: 'Strict token verification protecting wholesale pricing and buyer data' },
+      { layer: 'Hosting & Assets', technology: 'AWS S3 + CloudFront CDN', description: 'High-speed edge asset delivery for high-resolution product inventory' }
+    ],
+    impactMetrics: [
+      { label: 'Transactions', value: 'Real-time Offers' },
+      { label: 'Architecture', value: 'Modular React.js' },
+      { label: 'Client Quality', value: 'Zero-Defect Goal' }
     ],
     liveUrl: 'https://market.pollendirect.com',
     badge: 'B2B Marketplace'
@@ -145,8 +178,69 @@ export const PROJECTS: Project[] = [
       'Shopify Liquid template engine with SCSS and Vanilla JavaScript',
       'Shopify Storefront API for inventory synchronization'
     ],
+    architectureFlow: [
+      { layer: 'Storefront UI', technology: 'Custom Shopify Liquid + SCSS', description: 'Bespoke mobile-first British nursery brand design localized for PH' },
+      { layer: 'Client Scripts', technology: 'Vanilla ES6+ JavaScript', description: 'Dynamic cart drawers, variant selection, and instant search index' },
+      { layer: 'Checkout & Logistics', technology: 'Shopify Storefront Engine', description: 'Secure payment gateway integration with localized courier routing' }
+    ],
+    impactMetrics: [
+      { label: 'Brand', value: 'British Nursery Leader' },
+      { label: 'Store Engine', value: 'Shopify Liquid' },
+      { label: 'UX Focus', value: 'Mobile First' }
+    ],
     liveUrl: 'https://mamasandpapas.ph',
     badge: 'Shopify Store'
+  }
+];
+
+export const SCRUM_CEREMONIES = [
+  {
+    id: 'sprint-planning',
+    title: 'Sprint Planning & Story Point Sizing',
+    cadence: 'Bi-weekly (2-week sprint cycles)',
+    objective: 'Turn product roadmaps into well-groomed, achievable sprint backlogs with clear definition of done.',
+    methods: [
+      'Story Point estimation (Planning Poker / Fibonacci)',
+      'Breakdown of high-level epics into testable engineering tasks',
+      'Capacity planning accounting for team velocity and holidays'
+    ],
+    quote: 'Clear acceptance criteria upfront eliminate 80% of mid-sprint scope creep.'
+  },
+  {
+    id: 'daily-standup',
+    title: 'Daily Standup & Blocker Smashing',
+    cadence: 'Daily (15-minute timebox)',
+    objective: 'Keep engineering synchronized across timezones (Singapore, Manila, Global) and eliminate impediments immediately.',
+    methods: [
+      'What did we ship yesterday? What are we committing to today?',
+      'Active impediment discovery: API blockers, dependency lags, QA bottlenecks',
+      'Immediate 1-on-1 breakout sessions to resolve technical blocks'
+    ],
+    quote: 'The standup is not a status report to management — it is the engineering team coordinating to win the day.'
+  },
+  {
+    id: 'sprint-review',
+    title: 'Sprint Review & Stakeholder Demos',
+    cadence: 'End of each sprint',
+    objective: 'Showcase working software to product owners, business stakeholders, and clients for rapid feedback.',
+    methods: [
+      'Live software demonstrations in staging environments',
+      'Direct feedback collection and backlog realignment',
+      'Celebrating completed sprint goals with engineering'
+    ],
+    quote: 'Working software is the primary measure of real progress.'
+  },
+  {
+    id: 'retrospective',
+    title: 'Continuous Sprint Retrospectives',
+    cadence: 'Post-review each sprint',
+    objective: 'Fosters team psychological safety, reviews velocity metrics, and commits to 2-3 concrete process improvements.',
+    methods: [
+      'What went well? What slowed us down? Actionable experiments.',
+      'Defect root-cause analysis with QA and senior developers',
+      'Celebrating peer contributions and continuous team growth'
+    ],
+    quote: 'Retrospectives are where good teams steadily transform into high-velocity teams.'
   }
 ];
 

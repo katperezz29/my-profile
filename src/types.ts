@@ -1,3 +1,11 @@
+export type PersonaMode = 'all' | 'engineering' | 'scrum';
+
+export interface ArchitectureNode {
+  layer: string;
+  technology: string;
+  description: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -11,6 +19,8 @@ export interface Project {
   features: string[];
   responsibilities: string[];
   architecture: string[];
+  architectureFlow?: ArchitectureNode[];
+  impactMetrics?: { label: string; value: string }[];
   liveUrl?: string;
   badge?: string;
 }

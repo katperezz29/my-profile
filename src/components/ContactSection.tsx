@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Mail, Phone, MapPin, Clock, Copy, Check, Send, ExternalLink, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Copy, Check, Send, ExternalLink, MessageSquare, ShieldCheck, Sparkles } from 'lucide-react';
 import { PROFILE_INFO } from '../data/profileData';
 
 export default function ContactSection() {
@@ -43,17 +43,19 @@ export default function ContactSection() {
     }
   };
 
+  const directEmail = PROFILE_INFO.emails[0].address; // katrineperez29@gmail.com
+
   const handleSendMailto = (e: React.FormEvent) => {
     e.preventDefault();
     const subject = encodeURIComponent(`[Inquiry] ${roleType} - from ${senderName || 'Recruiter / Partner'}`);
     const bodyText = encodeURIComponent(
-      `Hello Katrine,\n\n${message || 'I came across your portfolio and resume and would like to discuss an opportunity.'}\n\nBest regards,\n${senderName || 'Partner'}\n${senderEmail ? `Email: ${senderEmail}` : ''}`
+      `Hello Katrine,\n\n${message || 'I came across your portfolio and would like to connect regarding an engineering opportunity.'}\n\nBest regards,\n${senderName || 'Partner'}\n${senderEmail ? `Email: ${senderEmail}` : ''}`
     );
-    window.location.href = `mailto:${PROFILE_INFO.emails[0].address}?subject=${subject}&body=${bodyText}`;
+    window.location.href = `mailto:${directEmail}?subject=${subject}&body=${bodyText}`;
   };
 
   const handleCopyDraft = () => {
-    const draft = `Subject: [Inquiry] ${roleType} - from ${senderName || 'Recruiter / Partner'}\n\nHello Katrine,\n\n${message || 'I came across your portfolio and resume and would like to discuss an opportunity.'}\n\nBest regards,\n${senderName || 'Partner'}\n${senderEmail ? `Email: ${senderEmail}` : ''}`;
+    const draft = `To: ${directEmail}\nSubject: [Inquiry] ${roleType} - from ${senderName || 'Recruiter / Partner'}\n\nHello Katrine,\n\n${message || 'I came across your portfolio and would like to connect regarding an engineering opportunity.'}\n\nBest regards,\n${senderName || 'Partner'}\n${senderEmail ? `Email: ${senderEmail}` : ''}`;
     navigator.clipboard.writeText(draft);
     setDraftCopied(true);
     setTimeout(() => setDraftCopied(false), 2500);
@@ -65,25 +67,28 @@ export default function ContactSection() {
         
         {/* Section Header */}
         <div className="max-w-3xl mb-8 space-y-1">
+          <div className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+            04 · Direct Contact & Inquiries
+          </div>
           <h2 className="text-3xl font-extrabold text-neutral-900 tracking-tight">
-            Contact
+            Connect with Katrine
           </h2>
           <p className="text-sm text-neutral-600">
-            Let's discuss engineering opportunities, Scrum roles, or project collaborations.
+            Reach out directly for Senior Software Engineer roles, Scrum Master engagements, or project consultations. All inquiries arrive directly in Katrine&apos;s personal inbox.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
-          {/* Contact Methods Cards */}
-          <div className="lg:col-span-5 space-y-6">
+          {/* Contact Methods Column */}
+          <div className="lg:col-span-5 space-y-5">
             
-            {/* Primary Email Card */}
+            {/* Primary Direct Email Card */}
             <div className="p-6 rounded-2xl bg-neutral-50 border border-neutral-200/80 space-y-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-neutral-500">
                   <Mail className="w-4 h-4 text-neutral-700" />
-                  <span>Primary Direct Email</span>
+                  <span>Direct Personal Email</span>
                 </div>
                 <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">
                   Fastest Response
@@ -92,22 +97,22 @@ export default function ContactSection() {
 
               <div>
                 <a
-                  href={`mailto:${PROFILE_INFO.emails[0].address}`}
+                  href={`mailto:${directEmail}`}
                   className="text-base sm:text-lg font-bold text-neutral-900 hover:text-neutral-700 break-all transition-colors"
                 >
-                  {PROFILE_INFO.emails[0].address}
+                  {directEmail}
                 </a>
                 <p className="text-xs text-neutral-500 mt-1">
-                  Personal inbox for recruitment, career opportunities, and direct collaboration.
+                  Guaranteed direct delivery to Katrine for recruitment, contracts, and technical interviews.
                 </p>
               </div>
 
               <div className="flex items-center gap-2 pt-1">
                 <button
-                  onClick={() => handleCopy(PROFILE_INFO.emails[0].address, 'email')}
+                  onClick={() => handleCopy(directEmail, 'email')}
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-neutral-200 text-neutral-700 hover:bg-neutral-100 rounded-lg text-xs font-semibold transition-colors shadow-2xs"
                 >
-                  {copiedEmail === PROFILE_INFO.emails[0].address ? (
+                  {copiedEmail === directEmail ? (
                     <>
                       <Check className="w-3.5 h-3.5 text-emerald-600" />
                       <span className="text-emerald-700">Copied!</span>
@@ -121,7 +126,7 @@ export default function ContactSection() {
                 </button>
 
                 <a
-                  href={`mailto:${PROFILE_INFO.emails[0].address}`}
+                  href={`mailto:${directEmail}`}
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-900 hover:bg-neutral-800 text-white rounded-lg text-xs font-semibold transition-colors"
                 >
                   <span>Open Mail Client</span>
@@ -130,73 +135,21 @@ export default function ContactSection() {
               </div>
             </div>
 
-            {/* Corporate / Secondary Email Card */}
+            {/* Telephone & Mobile Card */}
             <div className="p-6 rounded-2xl bg-neutral-50 border border-neutral-200/80 space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-neutral-500">
-                  <Mail className="w-4 h-4 text-neutral-700" />
-                  <span>Work / Pollen Email</span>
-                </div>
-                <span className="text-[11px] font-semibold text-neutral-700 bg-neutral-200 px-2 py-0.5 rounded">
-                  Corporate
-                </span>
-              </div>
-
-              <div>
-                <a
-                  href={`mailto:${PROFILE_INFO.emails[1].address}`}
-                  className="text-base sm:text-lg font-bold text-neutral-900 hover:text-neutral-700 break-all transition-colors"
-                >
-                  {PROFILE_INFO.emails[1].address}
-                </a>
-                <p className="text-xs text-neutral-500 mt-1">
-                  Pollen Tech platform ecosystem communication.
-                </p>
-              </div>
-
-              <div className="flex items-center gap-2 pt-1">
-                <button
-                  onClick={() => handleCopy(PROFILE_INFO.emails[1].address, 'email')}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-neutral-200 text-neutral-700 hover:bg-neutral-100 rounded-lg text-xs font-semibold transition-colors shadow-2xs"
-                >
-                  {copiedEmail === PROFILE_INFO.emails[1].address ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 text-emerald-600" />
-                      <span className="text-emerald-700">Copied!</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3.5 h-3.5 text-neutral-500" />
-                      <span>Copy Email</span>
-                    </>
-                  )}
-                </button>
-
-                <a
-                  href={`mailto:${PROFILE_INFO.emails[1].address}`}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-900 hover:bg-neutral-800 text-white rounded-lg text-xs font-semibold transition-colors"
-                >
-                  <span>Send Mail</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            </div>
-
-            {/* Phone & Location Card */}
-            <div className="p-6 rounded-2xl bg-neutral-50 border border-neutral-200/80 space-y-4">
-              <div className="space-y-3">
+              <div className="space-y-2">
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-2">
                     <Phone className="w-4 h-4 text-neutral-600" />
                     <span className="text-xs font-bold uppercase tracking-wider text-neutral-500">
-                      Telephone / Mobile
+                      Telephone / WhatsApp
                     </span>
                   </div>
                   <button
                     onClick={() => handleCopy(PROFILE_INFO.phone, 'phone')}
                     className="text-xs text-neutral-600 hover:text-neutral-900 font-semibold"
                   >
-                    {copiedPhone ? 'Copied' : 'Copy'}
+                    {copiedPhone ? 'Copied!' : 'Copy'}
                   </button>
                 </div>
                 <div className="text-base font-bold text-neutral-900 font-mono">
@@ -224,6 +177,17 @@ export default function ContactSection() {
               </div>
             </div>
 
+            {/* Availability & Commitment Guarantee Card */}
+            <div className="p-5 rounded-2xl bg-neutral-900 text-white space-y-3 shadow-xs">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-400">
+                <ShieldCheck className="w-4 h-4" />
+                <span>Response Commitment</span>
+              </div>
+              <p className="text-xs text-neutral-300 leading-relaxed">
+                Katrine typically replies to verified hiring inquiries within <strong>24 hours</strong>. Flexible for video interviews via Google Meet, Zoom, or Teams.
+              </p>
+            </div>
+
           </div>
 
           {/* Interactive Message Composer */}
@@ -236,7 +200,7 @@ export default function ContactSection() {
                 </h3>
               </div>
               <p className="text-xs sm:text-sm text-neutral-600">
-                Compose a note to Katrine. It automatically prepares a pre-filled email draft or copies the text formatted for your messaging app.
+                Compose a message below. When you click &ldquo;Send via Email Client&rdquo;, your inquiry will be prepared and addressed directly to <strong className="text-neutral-900">{directEmail}</strong>.
               </p>
             </div>
 
@@ -259,7 +223,7 @@ export default function ContactSection() {
 
                 <div className="space-y-1.5">
                   <label htmlFor="contact-sender-email" className="text-xs font-bold text-neutral-700">
-                    Your Email
+                    Your Email Address
                   </label>
                   <input
                     id="contact-sender-email"
@@ -275,7 +239,7 @@ export default function ContactSection() {
 
               <div className="space-y-1.5">
                 <label htmlFor="contact-role-type" className="text-xs font-bold text-neutral-700">
-                  Subject / Inquiring About
+                  Inquiry Topic / Opportunity
                 </label>
                 <select
                   id="contact-role-type"
@@ -283,11 +247,11 @@ export default function ContactSection() {
                   onChange={(e) => setRoleType(e.target.value)}
                   className="w-full px-3.5 py-2 text-sm rounded-lg border border-neutral-300 focus:border-neutral-900 focus:ring-1 focus:ring-neutral-900 outline-hidden bg-white transition-colors"
                 >
-                  <option value="Senior Software Engineer Role">Senior Software Engineer Role</option>
+                  <option value="Senior Software Engineer Role">Senior Software Engineer Role (Full-Time)</option>
                   <option value="Scrum Master & Agile Delivery Role">Scrum Master & Agile Delivery Role</option>
-                  <option value="Full-Stack Web/Mobile Platform Development">Full-Stack Web/Mobile Platform Development</option>
-                  <option value="Technical Consulting / Advisory">Technical Consulting / Advisory</option>
-                  <option value="General Professional Networking">General Professional Networking</option>
+                  <option value="Full-Stack Web/Mobile Platform Development">Full-Stack Web/Mobile Development (React/Nuxt/NestJS)</option>
+                  <option value="Technical Architecture Consulting">Technical Architecture Consulting</option>
+                  <option value="General Professional Inquiry">General Professional Inquiry</option>
                 </select>
               </div>
 
@@ -299,7 +263,7 @@ export default function ContactSection() {
                   id="contact-message-body"
                   rows={4}
                   required
-                  placeholder="Share details about the role, project scope, tech stack requirements, or collaboration..."
+                  placeholder="Share details regarding the role, project scope, tech stack, or interview schedule..."
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   className="w-full px-3.5 py-2 text-sm rounded-lg border border-neutral-300 focus:border-neutral-900 focus:ring-1 focus:ring-neutral-900 outline-hidden resize-none transition-colors"
@@ -313,7 +277,7 @@ export default function ContactSection() {
                   className="inline-flex items-center gap-2 px-5 py-2.5 bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold rounded-lg shadow-xs transition-colors"
                 >
                   <Send className="w-3.5 h-3.5" />
-                  <span>Send via Email Client</span>
+                  <span>Send to katrineperez29@gmail.com</span>
                 </button>
 
                 <button
@@ -325,7 +289,7 @@ export default function ContactSection() {
                   {draftCopied ? (
                     <>
                       <Check className="w-3.5 h-3.5 text-emerald-600" />
-                      <span className="text-emerald-700">Draft Copied to Clipboard!</span>
+                      <span className="text-emerald-700">Draft Copied!</span>
                     </>
                   ) : (
                     <>
@@ -336,8 +300,8 @@ export default function ContactSection() {
                 </button>
               </div>
 
-              <p className="text-[11px] text-neutral-400">
-                Clicking "Send via Email Client" will launch your default email client addressed to <span className="font-semibold text-neutral-600">{PROFILE_INFO.emails[0].address}</span>.
+              <p className="text-[11px] text-neutral-500">
+                Inquiries are sent straight to <strong className="text-neutral-800 font-semibold">{directEmail}</strong>.
               </p>
             </form>
           </div>

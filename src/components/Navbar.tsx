@@ -4,9 +4,10 @@ import { PROFILE_INFO } from '../data/profileData';
 
 interface NavbarProps {
   onOpenResumeModal: () => void;
+  onOpenContactModal: () => void;
 }
 
-export default function Navbar({ onOpenResumeModal }: NavbarProps) {
+export default function Navbar({ onOpenResumeModal, onOpenContactModal }: NavbarProps) {
   const [copied, setCopied] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -117,14 +118,14 @@ export default function Navbar({ onOpenResumeModal }: NavbarProps) {
             <span>View Resume</span>
           </button>
 
-          <a
+          <button
             id="nav-contact-cta-btn"
-            href="#contact"
+            onClick={onOpenContactModal}
             className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-white bg-neutral-900 hover:bg-neutral-800 rounded-lg transition-colors shadow-xs"
           >
-            <span>Let's Talk</span>
+            <span>Let&apos;s Talk</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
+          </button>
         </div>
 
         {/* Mobile menu hamburger */}
